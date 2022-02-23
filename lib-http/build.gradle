@@ -1,12 +1,21 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'maven-publish'
 }
 
-// JitPack Maven
-apply plugin: 'com.github.dcendents.android-maven'
-// Your Group
-group='com.github.nearbyren'
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'ren.nearby.ren.lib.http'
+                artifactId = 'http'
+                version = '1.0.0'
+            }
+        }
+    }
+}
 
 android {
     compileSdk 32
